@@ -1,4 +1,3 @@
-/* Estilos generales para centrar todo */
 div {
 display: flex;
   flex-direction: column; /* Coloca elementos uno debajo de otro */
