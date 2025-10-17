@@ -1,7 +1,11 @@
 import './style.css'
+import Books from "./model/books.class.js";
+import Modules from "./model/modules.class.js";
+import Users from "./model/users.class.js";
 
 
-import data from './services/datos'
+
+import { getDBUsers, getDBBooks, getDBModules, getDBUser, addDBUser, addDBBook , removeDBBook, changeDBBook, changeDBUserPassword } from './services/api'
 
 document.querySelector('#app').innerHTML = `
 <div>
@@ -11,3 +15,9 @@ document.querySelector('#app').innerHTML = `
     <p>Abre la consola para ver el resultado</p>
 </div>
 `
+let modules = new Modules();
+modules.populate();
+let users = new Users();
+users.populate();
+let books = new Books();
+books.populate;

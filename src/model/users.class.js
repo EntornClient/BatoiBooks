@@ -1,37 +1,41 @@
 import User from "./user.class.js";
+import { getDBUsers, getDBUser, addDBUser, changeDBUserPassword } from '../services/api.js'
 export default class Users{
     constructor(){
         this.data = [];
     }
 
-    populate(usuarios){
+    async populate(){
+        const usuarios = await getDBUsers();
         usuarios.forEach(usuario => {
             let usuarioAIntroducir = new User(usuario.id, usuario.nick, usuario.email, usuario.password);
             this.data.push(usuarioAIntroducir);
         });
-
-        
     }
 
-    addUser(user){
-        const usuari = new User(user.id, user.nick, user.email, user.password);
-        this.data.push(usuari);
-        return usuari;
+    async getUser(id){
+        const returnedUser = getDBUser(id);
+        return returnedUser;
     }
 
-    removeUser(id){
-        const arrayUsuarioEliminado = this.data.filter(usuario => usuario.id != id);
-        if(arrayUsuarioEliminado.length === this.data.length){
-            throw new Error("Usuario no existente");
-        }else{
-            this.data = usuarioEliminado;
-        }
+    async addUser(user){
+        const addUser = addDBUser(user);
+        return addUser;
     }
 
-    changeUser(user){
-        const idUser = user.id;
-        removeUser(isUser);
-        this.data.push(user);
+    async removeUser(id){
+        const removedUser = removeDBUser(id);
+        return removedUser;
+    }
+
+    async changeUser(user){
+        const changedUser = changeDBUser(user)
+        return changedUser;
+    }
+
+    async changeUserPassword(id, newPassword){
+        const userPasswordChanged = changeDBUserPassword(id, newPassword);
+        return userPasswordChanged;
     }
 
     toString(){
