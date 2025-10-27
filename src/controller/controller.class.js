@@ -12,10 +12,16 @@ export default class Controller{
         this.modules = new Modules();
 
     }
-    han
+
+    handlerSubmitBook(book){
+        const book = new Book(book.id, book.userId, book.moduleCode, book.publisher, book.price, book.pages, book.status);
+        this.books.addBook(book);
+        this.view.renderBook(book);
+        
+    }
 
     handleRemoveBook(id){
-        //this.books.removeBook(id);
+        this.books.removeBook(id);
         this.view.removeBook(id);
     }
     
