@@ -15,23 +15,30 @@ export default class Books{
     }
 
     async getBook(id){
-        const returnedBook = getDBBook(id);
+        const returnedBook = await getDBBook(id);
         return returnedBook;
     }
 
     async addBook(book){
-        const bookAdd = addDBBook(book);
+        const bookAdd = await addDBBook(book);
         return bookAdd;
     }
 
     async changeBook(book){
-        const bookchanged = changeDBBook(book);
+        const bookchanged = await changeDBBook(book);
         return bookchanged;
     }
 
+    getBookIndexById(bookId) {
+    const index = this.data.findIndex((book) => book.id === bookId);
+    if (index === -1) throw new Error("Book not found");
+    return index;
+    }
+
     async removeBook(id){
-        const removedBok = removeDBBook(id);
-        return removedBok;
+        const removedBok = await removeDBBook(id);
+        const index = this.getBookIndexById(id);
+        this.data.splice(index, 1);
     }
 
     toString(){

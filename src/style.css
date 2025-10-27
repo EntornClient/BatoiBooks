@@ -3,7 +3,6 @@ display: flex;
   flex-direction: column; /* Coloca elementos uno debajo de otro */
   align-items: center;    /* Centra horizontalmente */
   justify-content: center;/* Centra verticalmente */
-  min-height: 100vh;      /* Ocupa toda la altura */
   text-align: center;     /* Centra el texto */
 font-family: Arial, Helvetica, sans-serif;
 }

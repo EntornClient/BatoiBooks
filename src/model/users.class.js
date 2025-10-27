@@ -14,27 +14,27 @@ export default class Users{
     }
 
     async getUser(id){
-        const returnedUser = getDBUser(id);
+        const returnedUser = await getDBUser(id);
         return returnedUser;
     }
 
     async addUser(user){
-        const addUser = addDBUser(user);
+        const addUser = await addDBUser(user);
         return addUser;
     }
 
     async removeUser(id){
-        const removedUser = removeDBUser(id);
+        const removedUser = await removeDBUser(id);
         return removedUser;
     }
 
     async changeUser(user){
-        const changedUser = changeDBUser(user)
+        const changedUser = await changeDBUser(user)
         return changedUser;
     }
 
     async changeUserPassword(id, newPassword){
-        const userPasswordChanged = changeDBUserPassword(id, newPassword);
+        const userPasswordChanged = await changeDBUserPassword(id, newPassword);
         return userPasswordChanged;
     }
 
