@@ -14,21 +14,25 @@ export default class Controller{
     }
 
     handlerSubmitBook(book){
-        const book = new Book(book.id, book.userId, book.moduleCode, book.publisher, book.price, book.pages, book.status);
-        this.books.addBook(book);
-        this.view.renderBook(book);
+        const newBook = new Book(book.id, book.userId, book.moduleCode, book.publisher, book.price, book.pages, book.status);
+        this.books.addBook(newBook);
+        this.view.renderBook(newBook);
         
     }
 
-    handleRemoveBook(id){
-        this.books.removeBook(id);
+    async handleRemoveBook(id){
+        try{
+        await this.books.removeBook(id);
         this.view.removeBook(id);
+        }catch(error){
+            this.view.renderMessage("error al eliminar libro" + error)
+        }
     }
     
 async init(){
     try{
         document.getElementById("btn-remove").addEventListener("click", ()=>{
-            //const id = document.getElementById("id").value();
+            //const id = document.getElementById("id").value;
             //this.handleRemoveBook(id);
             alert("boton pulsado");
         })

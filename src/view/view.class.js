@@ -13,7 +13,8 @@ export default class View {
     renderModulos(modulos){
         modulos.forEach(modulo => {
             const newOption = document.createElement('option')
-            newOption.innerHTML = modulo.vliteral;
+            newOption.value = modulo.vliteral;
+            newOption.innerHTML = modulo.code;
             document.getElementById('select').append(newOption);
         });
     }
@@ -21,7 +22,7 @@ export default class View {
     renderBook(book){
         const newDiv = document.createElement('div');
         newDiv.className = "card"
-        newDiv.id = book.id;
+        newDiv.id = `book-${book.id}`;
         newDiv.innerHTML = "<h3>" + "libro: " + book.id + "</h3>" + "<br>" + "<h3>" + book.moduleCode + "</h3>" +
         "<p>" +  book.publisher + "</p>" + "<br>" + "<p>" + book.pages + " paginas" + "</p>" + "<br>" + 
         "<p>Estado: " + book.status + "</p>" + "<br>" + "<p>vendido en: " + book.soldDate + "</p>" + "<br>" + 
