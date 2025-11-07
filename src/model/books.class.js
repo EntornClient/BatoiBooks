@@ -21,7 +21,9 @@ export default class Books{
 
     async addBook(book){
         const bookAdd = await addDBBook(book);
-        return bookAdd;
+        const bookAdd2 = new Book(bookAdd);
+        this.data.push(bookAdd2);
+        return bookAdd2;
     }
 
     async changeBook(book){
