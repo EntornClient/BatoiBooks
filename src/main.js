@@ -26,7 +26,7 @@ document.querySelector('#app').innerHTML = `
     </div>
 
     <div id="form">
-    <form id="formulari">
+    <form id="formulari" novalidate>
         <h3 id="formTitle">Añadir libro</h3>
         <div id="id-libro" style="display: none;">
             <label for="id_libro_oculto">ID del Libro: </label>
@@ -41,7 +41,7 @@ document.querySelector('#app').innerHTML = `
 
         <div>
             <label for="publisher">publisher: </label>
-            <input type="text" id="publisher" name="publisher">
+            <input type="text" id="publisher" name="publisher" required>
         </div>
 
         <div>
@@ -72,7 +72,7 @@ document.querySelector('#app').innerHTML = `
             <label for="soldDate">Fecha de venta: </label>
             <input type="date" name="soldDate" id="soldDate">
         </div>
-
+        <div id="errores-generales"></div>
         <div>
             <button type="submit" id="btn-submit">Guardar Libro</button>
         </div>

@@ -51,8 +51,10 @@ async init(){
     });
     this.view.bookForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const newBook = this.view.getFormBookData();
-        this.handlerSubmitBook(newBook);
+        if(this.view.validateForm()){
+            const newBook = this.view.getFormBookData();
+            this.handlerSubmitBook(newBook);
+        }
     })
 
 

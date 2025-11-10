@@ -16,6 +16,7 @@ export default class View {
         this.status = this.bookForm.querySelector('input[name="status"]:checked');
         this.comments = document.getElementById('comments');
         this.soldDate = document.getElementById("soldDate");
+        this.erroresContainer = document.getElementById('errores-generales');
 
     }
 
@@ -74,17 +75,16 @@ export default class View {
     }
 
     getFormBookData() {
-    console.log(JSON.stringify(this.bookForm))
-    return {
-    userId: 2,
-    moduleCode: document.getElementById('module-code').value,
-    publisher: document.getElementById('publisher').value,
-    price: parseFloat(document.getElementById('price').value),
-    pages: parseInt(document.getElementById('pages').value),
-    status: this.bookForm.querySelector('input[name="status"]:checked')?.value,
-    comments: document.getElementById('comments').value,
-    soldDate: document.getElementById("soldDate").value,
-    }
+        return {
+            userId: 2,
+            moduleCode: document.getElementById('module-code').value,
+            publisher: document.getElementById('publisher').value,
+            price: parseFloat(document.getElementById('price').value),
+            pages: parseInt(document.getElementById('pages').value),
+            status: this.bookForm.querySelector('input[name="status"]:checked')?.value,
+            comments: document.getElementById('comments').value,
+            soldDate: document.getElementById("soldDate").value,
+        }
     }
 
     populateBooks(book){
@@ -97,5 +97,64 @@ export default class View {
         this.status.value = book.status;
         this.comments.value = book.comments;
         this.soldDate.value = book.soldDate;
+    }
+
+    clearValidationErrors() {
+        const erroresContainer = document.getElementById('errores-generales');
+        
+        if (erroresContainer) {
+            erroresContainer.innerHTML = '';
+        }
+        
+        const formulario = document.getElementById('formulari');
+        const camposConError = formulario.querySelectorAll('.campo-error');
+        
+        camposConError.forEach(campo => {
+            campo.classList.remove('campo-error');
+        });
+    }
+
+    displayValidationErrors(errores) {
+        if (!this.erroresContainer) return; 
+        const lista = document.createElement('ul');
+        lista.style.color = 'red';
+        lista.style.listStyleType = 'disc';
+        lista.style.paddingLeft = '20px';
+        
+        errores.forEach(errorMensaje => {
+            const item = document.createElement('li');
+            item.textContent = errorMensaje;
+            lista.appendChild(item);
+        });
+
+        this.erroresContainer.appendChild(lista);
+        this.erroresContainer.style.border = '1px solid red';
+        this.erroresContainer.style.padding = '10px';
+    }
+
+    validateForm(){
+        const formulario = this.bookForm;
+        const campos = formulario.querySelectorAll('[required], input[type="number"]');
+        let errores = [];
+        
+        this.clearValidationErrors(); 
+
+        campos.forEach(campo => {
+            campo.classList.remove('campo-error');
+            
+            if (!campo.checkValidity()) {
+                campo.classList.add('campo-error');
+                
+                const mensaje = `${campo.name}: ${campo.validationMessage}`;
+                errores.push(mensaje);
+            }
+        });
+
+        if (errores.length > 0) {
+            this.displayValidationErrors(errores); 
+            return false;
+        }
+        
+        return true;
     }
 }

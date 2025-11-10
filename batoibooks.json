@@ -2127,18 +2127,6 @@
   ],
   "books": [
     {
-      "id": "1",
-      "userId": 2,
-      "moduleCode": "5025",
-      "publisher": "Apunts",
-      "price": 12,
-      "pages": 25,
-      "status": "good",
-      "photo": "",
-      "comments": "",
-      "soldDate": "2023-02-01"
-    },
-    {
       "userId": 4,
       "moduleCode": "5021",
       "publisher": "McGraw-Hill",
@@ -2185,6 +2173,39 @@
       "comments": "",
       "soldDate": "",
       "id": "10"
+    },
+    {
+      "id": "b55d",
+      "userId": 2,
+      "moduleCode": "0437",
+      "publisher": "partfghart",
+      "price": 50,
+      "pages": 2,
+      "status": "good",
+      "comments": "",
+      "soldDate": "2025-11-27"
+    },
+    {
+      "id": "8230",
+      "userId": 2,
+      "moduleCode": "0011",
+      "publisher": "hola",
+      "price": 50,
+      "pages": 50,
+      "status": "good",
+      "comments": "",
+      "soldDate": ""
+    },
+    {
+      "id": "3b41",
+      "userId": 2,
+      "moduleCode": "0012",
+      "publisher": "hola",
+      "price": 50,
+      "pages": 50,
+      "status": "good",
+      "comments": "",
+      "soldDate": ""
     }
   ]
 }
